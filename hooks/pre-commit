@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -e
+
+go mod tidy
+make fmt
+
+files=$(git diff --name-only)
+if [[ -n ${files} ]]; then
+    git add $files
+fi
+
+exit $?
